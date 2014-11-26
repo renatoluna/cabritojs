@@ -1,43 +1,28 @@
-Function.prototype.extend = function (body) {
-    var constructor = function () {};
-    var prototype = constructor.prototype = new this;
-    body.call(prototype, this.prototype);
-    return constructor;
-};
+var UOLPD = {};
+UOLPD.TagManager = {};
+UOLPD.TagManager.Commons = {};
 
-Function.prototype.create = function () {
-    var instance = new this;
-    instance.constructor.apply(instance, arguments);
-    return instance;
-};
+(function (namespace) {
+    if (!namespace) {
+        return;
+    }
 
-var Person = Object.extend(function () {
-    this.constructor = function (isDancing) {
-        this.dancing = isDancing;
+    var Class = function () {
+        this.constructor = function Class () {};
+        this.create = function () {
+            var instance = this;
+            instance.constructor.apply(instance, arguments);
+            return instance;
+        };
+        this.extends = function (body) {
+            var constructor = function () {};
+            var prototype = constructor.prototype = this;
+            body.call(this);
+            return constructor.prototype;
+        };
     };
 
-    this.dance = function () {
-        return this.dancing;
-    };
-});
+    namespace.Class = namespace.Class || new Class();
 
-var Ninja = Person.extend(function (base) {
-    this.constructor = function () {
-        base.constructor.call(this, false);
-    };
-
-    this.swingSword = function () {
-        return true;
-    };
-});
-
-var p = Person.create(true);
-p.dance(); // => true
-
-var n = Ninja.create();
-n.dance(); // => false
-n.swingSword(); // => true
-
-// Should all be true
-p instanceof Person && p instanceof Object &&
-n instanceof Ninja && n instanceof Person && n instanceof Object
+    return namespace.Class;
+})((window.UOLPD.TagManager.Commons) ? window.UOLPD.TagManager.Commons : undefined);
