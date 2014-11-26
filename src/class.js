@@ -1,7 +1,3 @@
-var UOLPD = {};
-UOLPD.TagManager = {};
-UOLPD.TagManager.Commons = {};
-
 (function (namespace) {
     if (!namespace) {
         return;
@@ -25,4 +21,4 @@ UOLPD.TagManager.Commons = {};
     namespace.Class = namespace.Class || new Class();
 
     return namespace.Class;
-})((window.UOLPD.TagManager.Commons) ? window.UOLPD.TagManager.Commons : undefined);
+})((window.cabrito) ? window.cabrito : undefined);
