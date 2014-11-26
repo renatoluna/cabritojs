@@ -2,7 +2,7 @@ var gulp = require('gulp');
 var concat = require('gulp-concat');
 var sourcemaps = require('gulp-sourcemaps');
 
-gulp.task('javascript', function() {
+gulp.task('default', function() {
   gulp.src('src/**/*.js')
     .pipe(sourcemaps.init())
     .pipe(concat('cabrito.js'))
