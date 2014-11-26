@@ -5,7 +5,7 @@ var sourcemaps = require('gulp-sourcemaps');
 gulp.task('javascript', function() {
   gulp.src('src/**/*.js')
     .pipe(sourcemaps.init())
-    .pipe(concat('all.js'))
+    .pipe(concat('cabrito.js'))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('dist'));
 });
