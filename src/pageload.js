@@ -4,7 +4,8 @@
     }
 
     var PageLoad = function () {
-        this.Ready = function (fn, timeout) {
+        var $public = this;
+        this.ready = function (fn, timeout) {
             var readyState = document.readyState;
             timeout = (timeout ? timeout + 10 : 0);
             if (typeof fn != "function") {
@@ -14,7 +15,7 @@
                 fn();
             } else {
                 setTimeout(function() {
-                    $private.ready(fn, timeout);
+                    $public.ready(fn, timeout);
                 }, timeout);
             }
         };
