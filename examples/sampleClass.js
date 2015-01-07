@@ -1,4 +1,4 @@
-var Feline = UOLPD.TagManager.Commons.Class.extends(function () {
+var Feline = cabrito.Class.extends(function () {
     this.constructor = function (isWalking) {
         this.walking = isWalking;
     };
