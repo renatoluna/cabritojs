@@ -1,20 +1,21 @@
 {
   "name": "cabritojs",
   "repository": {
-    "type": "git", 
+    "type": "git",
     "url": "https://github.com/renatoluna/cabritojs.git"
-  }, 
+  },
   "version": "0.0.1",
   "devDependencies": {
     "gulp": "^3.8.10",
     "gulp-concat": "^2.4.2",
-    "gulp-sourcemaps": "^1.2.8"
+    "gulp-sourcemaps": "^1.2.8",
+    "gulp-uglify": "^1.0.2"
   },
   "licenses": [
     {
-      "type": "MIT", 
+      "type": "MIT",
       "url": "https://github.com/renatoluna/cabritojs/blob/master/LICENSE"
     }
-  ], 
+  ],
   "dependencies": {}
 }
