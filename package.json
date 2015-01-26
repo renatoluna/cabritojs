@@ -17,5 +17,9 @@
       "url": "https://github.com/renatoluna/cabritojs/blob/master/LICENSE"
     }
   ],
-  "dependencies": {}
+  "dependencies": {},
+  "scripts" : {
+    "prestart" : "rm -rf dist",
+    "start" : "gulp dist"
+  }
 }
