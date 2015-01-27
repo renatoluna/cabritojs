@@ -1,4 +1,6 @@
 var gulp = require('gulp');
+var karma = require('karma').server;
+
 var concat = require('gulp-concat');
 var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
@@ -24,5 +26,22 @@ gulp.task('min', function() {
     .pipe(gulp.dest('dist'));
 });
 
+gulp.task('tdd', function (done) {
+    karma.start({
+        configFile: __dirname + '/karma.conf.js',
+        browsers: ['PhantomJS', 'Chrome']
+    }, done);
+});
+
+gulp.task('dev', ['build', 'tdd']);
+
+gulp.task('test', function (done) {
+    karma.start({
+        configFile: __dirname + '/karma.conf.js',
+        browsers: ['PhantomJS'],
+        singleRun: true
+    }, done);
+});
+
 gulp.task('default', ['build']);
-gulp.task('dist', ['build', 'min']);
+gulp.task('dist', ['test', 'build', 'min']);
