@@ -13,18 +13,18 @@
             }
             if (result) {
                 fn();
-            } else {
-                setTimeout(function() {
-                    hasLoaded(condition, fn, timeout);
-                }, timeout);
+                return true;
             }
+            setTimeout(function() {
+                hasLoaded(condition, fn, timeout);
+            }, timeout);
         };
         this.elementReady = function (id, fn, timeout) {
-            hasLoaded('document.getElementById("' + id + '")', fn, timeout);
+            return hasLoaded('document.getElementById("' + id + '")', fn, timeout);
         };
         this.ready = function (fn, timeout) {
             var condition = 'document.readyState && document.readyState == "complete"';
-            hasLoaded(condition, fn, timeout);
+            return hasLoaded(condition, fn, timeout);
         };
     };
 
