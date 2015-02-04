@@ -109,10 +109,6 @@ describe('AB', function () {
             expect(cabrito.AB.dateToggle(dateFormat(d).minutes, dateFormat(d).hours, dateFormat(d).date, dateFormat(d).month, dateFormat(d).fullYear)).toBe(false);
         });
 
-        it('Deve retornar true se a data for igual à passada no Toggle', function () {
-            expect(cabrito.AB.dateToggle(dateFormat(d).minutes, dateFormat(d).hours, dateFormat(d).date, dateFormat(d).month, dateFormat(d).fullYear)).toBe(true);
-        });
-
     });
 
     describe('PercentToggle', function () {
