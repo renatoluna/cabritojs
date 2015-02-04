@@ -30,23 +30,35 @@ describe('AB', function () {
 
     describe('dateToggle', function () {
 
-        it('Deve retornar true se a data for posterior à passada no Toggle', function () {
+        it('Deve retornar true se a hora for posterior à passada no Toggle', function () {
             var date = new Date ();
             var hours = date.getHours() - 1;
             var day = date.getDate();
             var month = date.getMonth() + 1;
             var fullYear = date.getFullYear();
             expect(cabrito.AB.dateToggle(hours,day,month,fullYear)).toBe(true);
+        });
+
+        it('Deve retornar true se o dia for posterior ao passado no Toggle', function () {
+            var date = new Date ();
             var hours = date.getHours();
             var day = date.getDate() - 1;
             var month = date.getMonth() + 1;
             var fullYear = date.getFullYear();
             expect(cabrito.AB.dateToggle(hours,day,month,fullYear)).toBe(true);
+        });
+
+        it('Deve retornar true se o mês for posterior ao passado no Toggle', function () {
+            var date = new Date ();
             var hours = date.getHours();
             var day = date.getDate();
             var month = date.getMonth();
             var fullYear = date.getFullYear();
             expect(cabrito.AB.dateToggle(hours,day,month,fullYear)).toBe(true);
+        });
+
+        it('Deve retornar true se o ano for posterior ao passado no Toggle', function () {
+            var date = new Date ();
             var hours = date.getHours();
             var day = date.getDate();
             var month = date.getMonth() + 1;
@@ -54,23 +66,35 @@ describe('AB', function () {
             expect(cabrito.AB.dateToggle(hours,day,month,fullYear)).toBe(true);
         });
 
-        it('Deve retornar false se a data for anterior à passada no Toggle', function () {
+        it('Deve retornar true se a hora for anterior à passada no Toggle', function () {
             var date = new Date ();
             var hours = date.getHours() + 1;
             var day = date.getDate();
             var month = date.getMonth() + 1;
             var fullYear = date.getFullYear();
             expect(cabrito.AB.dateToggle(hours,day,month,fullYear)).toBe(false);
+        });
+
+        it('Deve retornar true se o dia for anterior à passada no Toggle', function () {
+            var date = new Date ();
             var hours = date.getHours();
             var day = date.getDate() + 1;
             var month = date.getMonth() + 1;
             var fullYear = date.getFullYear();
             expect(cabrito.AB.dateToggle(hours,day,month,fullYear)).toBe(false);
+        });
+
+        it('Deve retornar true se o mês for anterior à passada no Toggle', function () {
+            var date = new Date ();
             var hours = date.getHours();
             var day = date.getDate();
             var month = date.getMonth() + 2;
             var fullYear = date.getFullYear();
             expect(cabrito.AB.dateToggle(hours,day,month,fullYear)).toBe(false);
+        });
+
+        it('Deve retornar true se o ano for anterior à passada no Toggle', function () {
+            var date = new Date ();
             var hours = date.getHours();
             var day = date.getDate();
             var month = date.getMonth() + 1;
