@@ -1,16 +1,18 @@
 describe('Pageload', function () {
 
-    it('Deve retornar true se a página tiver carregado', function () {
-        var loaded = false;
-        document.readyState = "complete";
+    beforeEach(function(done) {
+        done();
+    }, 5000);
 
-        cabrito.PageLoad.ready(function () {
-            loaded = true;
-        });
+    it('Deve retornar true se a página tiver carregado', function (done) {
 
-        setTimeout(function () {
-            expect(loaded).toBe(true);
-        }, 100);
+        var interval = setInterval(function () {
+            if (document.readyState == 'complete') {
+                expect(cabrito.PageLoad.ready(function () {})).toBe(true);
+                done();
+                clearInterval(interval);
+            }
+        }, 1);
     });
 
     it('Deve retornar false se o parâmetro passado não for uma FN', function() {
@@ -18,22 +20,29 @@ describe('Pageload', function () {
         expect(cabrito.PageLoad.ready(['array'])).toBe(false);
         expect(cabrito.PageLoad.ready(true)).toBe(false);
         expect(cabrito.PageLoad.ready(undefined)).toBe(false);
-        expect(cabrito.PageLoad.ready(null)).toBe(false); 
+        expect(cabrito.PageLoad.ready(null)).toBe(false);
     });
 
-    it('Deve retornar true se o elemento com o ID passado existir na página', function() {
-        var loaded = false;
+    it('Deve retornar true se o elemento com o ID passado existir na página', function(done) {
         var elem = document.createElement('div');
         elem.setAttribute('id', 'needed');
         document.body.appendChild(elem);
 
-        cabrito.PageLoad.elementReady('needed', function() {
-            loaded = true;
-        });
+        var interval = setInterval(function () {
+            if (document.getElementById('needed')) {
+                expect(cabrito.PageLoad.elementReady('needed', function () {})).toBe(true);
+                elem.parentElement.removeChild(elem);
+                done();
+                clearInterval(interval);
+            }
+        }, 1);
+    });
 
+    it('Deve retornar undefined se o elemento com o ID passado não existir na página', function(done) {
         setTimeout(function () {
-            expect(loaded).toBe(true);
-        }, 100);
+            expect(cabrito.PageLoad.elementReady('needed', function () {})).toBe(undefined);
+            done();
+        }, 1);
     });
 
 });
