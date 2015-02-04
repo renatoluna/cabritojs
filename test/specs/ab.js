@@ -10,6 +10,31 @@ function dateFormat (date) {
 
 describe('AB', function () {
 
+    describe('QueryStringToggle', function () {
+
+        it('Deve retornar true se a queryString existir no toggle', function () {
+            var queryString = 'toggle';
+            var value = '1';
+            cabrito.AB.queryString = queryString + '=' + value;
+            expect(cabrito.AB.queryStringToggle(queryString, value)).toBe(true);
+        });
+
+        it('Deve retornar false se a queryString existir no toggle e tiver um valor diferente', function () {
+            var queryString = 'toggle';
+            var value = '1';
+            cabrito.AB.queryString = queryString + '=' + value;
+            expect(cabrito.AB.queryStringToggle(queryString, '0')).toBe(false);
+        });
+
+        it('Deve retornar false se a queryString não existir no toggle', function () {
+            var queryString = 'toggle';
+            var value = '1';
+            cabrito.AB.queryString = '';
+            expect(cabrito.AB.queryStringToggle(queryString, value)).toBe(false);
+        });
+
+    });
+
     describe('CookieToggle', function () {
 
         beforeEach(function() {

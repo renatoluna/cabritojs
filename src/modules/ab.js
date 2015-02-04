@@ -31,6 +31,14 @@
             return unescape(str.substring(middleIndex, endIndex));
         };
 
+        this.queryStringToggle = function (name, value) {
+            var search = window.location.search;
+            if (this.queryString) {
+                search = this.queryString;
+            }
+            return value == getValueFromKeyInString(search, name, '&');
+        };
+
         this.getDeadLine = function (minutes, hours, day, month, year) {
             var date = new Date();
             date.setSeconds(0);
@@ -58,12 +66,8 @@
             return today >= this.getDeadLine(minutes, hours, day, month, year);
         };
 
-        var getCookieValue = function (cookieName) {
-            return getValueFromKeyInString(document.cookie, cookieName, ';');
-        };
-
         this.cookieToggle = function (name, value) {
-            return value == getCookieValue(name);
+            return value == getValueFromKeyInString(document.cookie, name, ';');
         };
 
     };
