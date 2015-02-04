@@ -31,26 +31,31 @@
             return unescape(str.substring(middleIndex, endIndex));
         };
 
-        var deadLine = function (hours, day, month, year) {
+        this.getDeadLine = function (minutes, hours, day, month, year) {
             var date = new Date();
-            if (typeof hours !== undefined) {
+            date.setSeconds(0);
+            if (typeof minutes == 'number') {
+                date.setMinutes(minutes);
+            }
+            if (typeof hours == 'number') {
                 date.setHours(hours);
             }
-            if (typeof day !== undefined) {
+            if (typeof day == 'number') {
                 date.setDate(day);
             }
-            month = month - 1;
-            date.setMonth(month);
-            if (year) {
-                date.setYear(year);
+            if (typeof month == 'number') {
+                month = month - 1;
+                date.setMonth(month);
+            }
+            if (typeof year == 'number') {
+                date.setFullYear(year);
             }
             return date;
         };
 
-        this.dateToggle = function (hours, day, month, year) {
+        this.dateToggle = function (minutes, hours, day, month, year) {
             var today = new Date();
-            var deadline = deadLine(hours, day, month, year);
-            return today >= deadline;
+            return today >= this.getDeadLine(minutes, hours, day, month, year);
         };
 
         var getCookieValue = function (cookieName) {
