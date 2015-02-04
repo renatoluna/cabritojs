@@ -70,6 +70,16 @@
             return value == getValueFromKeyInString(document.cookie, name, ';');
         };
 
+        this.percentToggle = function (value) {
+            if (typeof value !== 'number') {
+                return;
+            }
+            if (value > 100) {
+                return false;
+            }
+            return Math.random() * 100 <= value;
+        };
+
     };
 
     namespace.AB = namespace.AB || new AB();

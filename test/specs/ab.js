@@ -115,4 +115,26 @@ describe('AB', function () {
 
     });
 
+    describe('PercentToggle', function () {
+
+        it('Deve retornar false se o valor passado no Toggle for maior que 100', function () {
+            expect(cabrito.AB.percentToggle(101)).toBe(false);
+        });
+
+        it('Deve retornar true se o valor randômico for menor que o passado no Toggle', function () {
+            Math.random = function () {
+                return 0.04;
+            };
+            expect(cabrito.AB.percentToggle(5)).toBe(true);
+        });
+
+        it('Deve retornar false se o valor randômico for menor que o passado no Toggle', function () {
+            Math.random = function () {
+                return 0.06;
+            };
+            expect(cabrito.AB.percentToggle(5)).toBe(false);
+        });
+
+    });
+
 });
