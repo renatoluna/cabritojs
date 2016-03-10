@@ -5,8 +5,9 @@
 
     var AB = function () {
         var $public = this;
+        var $private = {};
 
-        var getValueFromKeyInString = function (str, name, separator) {
+        $private.getValueFromKeyInString = function (str, name, separator) {
             if (typeof name !== 'string') {
                 return;
             }
@@ -31,15 +32,15 @@
             return unescape(str.substring(middleIndex, endIndex));
         };
 
-        this.queryStringToggle = function (name, value) {
+        $public.queryStringToggle = function (name, value) {
             var search = window.location.search;
-            if (this.queryString) {
-                search = this.queryString;
+            if ($public.queryString) {
+                search = $public.queryString;
             }
-            return value == getValueFromKeyInString(search, name, '&');
+            return value == $private.getValueFromKeyInString(search, name, '&');
         };
 
-        this.getDeadLine = function (minutes, hours, day, month, year) {
+        $public.getDeadLine = function (minutes, hours, day, month, year) {
             var date = new Date();
             date.setSeconds(0);
             if (typeof minutes == 'number') {
@@ -61,16 +62,16 @@
             return date;
         };
 
-        this.dateToggle = function (minutes, hours, day, month, year) {
+        $public.dateToggle = function (minutes, hours, day, month, year) {
             var today = new Date();
-            return today >= this.getDeadLine(minutes, hours, day, month, year);
+            return today >= $public.getDeadLine(minutes, hours, day, month, year);
         };
 
-        this.cookieToggle = function (name, value) {
-            return value == getValueFromKeyInString(document.cookie, name, ';');
+        $public.cookieToggle = function (name, value) {
+            return value == $private.getValueFromKeyInString(document.cookie, name, ';');
         };
 
-        this.percentToggle = function (value) {
+        $public.percentToggle = function (value) {
             if (typeof value !== 'number') {
                 return;
             }
